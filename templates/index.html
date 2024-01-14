@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="split left">
+  <div class="centered">
+    {% if verse %}
+    {% if verse == "Not Found"%}
+    <h2>The Book of Mormon verse you inputed is not valid. Please try again.</h2>
+    {% else %}
+    <div class="verseDisplay">
+      <h2>{{verse['book'].title()}} {{verse['chapter']}}:{{verse['verseNum']}}</h2>
+      <p>{{verse['verse']}}</p>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% if sentence %}
+    <div class="verseDisplay">
+      <h2>{{sentence}}</h2>
+    </div>
+    {% endif %}
+    <div class="split1 left">
+      <h3>Search by Verse</h3>
+      <form method="post" action="/">
+        <p>Enter Book:</p>
+        <p><input type="text" name="book" required /></p>
+        <p>Enter Chapter:</p>
+        <p><input type="number" name="chapter" required /></p>
+        <p>Enter Verse Number:</p>
+        <p><input type="number" name="verseNum" required /></p>
+        <p><input type="submit" value="Submit" /></p>
+      </form>
+    </div>
+    <div class="split1 right">
+      <h3>Search by Your Own Sentence</h3>
+      <form method="post" action="/">
+        <p>Enter Your Prompt:</p>
+        <textarea placeholder="The Lord will protect us when we are humble." name="sentence" required></textarea>
+        <p><input type="submit" value="Submit" /></p>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+    {% if ((verse) and (verse != "Not Found")) or ((sentence) and (sentence != "Not Found"))%}
+    {% if foundVerses|length>0 %}
+    <div class="verseDisplay">
+      <button onclick="plusDivs(-1)">&#10094;</button>
+      <button onclick="plusDivs(1)">&#10095;</button>
+      {% for item in foundVerses%}
+      <div class="similarVerse">
+        <h2>{{item['book'].title()}} {{item['chapter']}}:{{item['verseNum']}}</h2>
+        <p>{{item['verse']}}</p>
+      </div>
+      {% endfor %}
+
+    </div>
+    <div class="verseList">
+      {% for item in foundVerses%}
+      <div class="otherVerse" onclick="currentDiv({{loop.index}})">
+        <p>{{item['book'].title()}} {{item['chapter']}}:{{item['verseNum']}}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <h2>For some reason, our developer failed. Sorry!</h2>
+    {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

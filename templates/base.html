@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>Similar Verse Finder</title>
+  </head>
+  <body>
+    <header>
+      <h1>Similar Verse Finder in the Book of Mormon</h1>
+      <p>Made by Harlan Stevens</p>
+    </header>
+    <main>
+      <!-- child template -->
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</html>
