@@ -1,21 +1,51 @@
 header {
-    border: 2px #eee solid;
-    color: brown;
-    text-align: center;
+    background-color: #002e5d;
+    text-align: left;
+    display: flex;
+    color: white;
 }
 
+
+.Header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    padding-right: 20px;
+    padding-left: 20px;
+
+}
+.Header-title{
+    padding-left: 20px;
+}
+
+.vl {
+    border-left: 2px solid #0062B8;
+}
+
+body{
+    margin: 0px;
+    position: relative;
+    min-height: 100vh;
+    font-family: 'HCo Ringside Narrow SSm', 'Open Sans', Helvetica, Arial, sans-serif;
+
+}
+main{
+    position: relative;
+}
 /* Split the screen in half */
 .split {
-    height: 100vh;
+    /* height: 100vh; */
     width: 50%;
     box-sizing: border-box;
     padding-top: 10px;
     padding-right: 50px;
     padding-left: 50px;
+    padding-bottom: 50px;
 }
 
 .split1 {
-    height: 80vh;
+    /* height: 50vh; */
     width: 50%;
     box-sizing: border-box;
     padding-top: 10px;
@@ -27,8 +57,10 @@ header {
 .left {
     left: 0;
     float: left;
-    border-right: 2px #eee solid;
     /* background-color: rgb(205, 196, 196); */
+}
+.border-left {
+    border-right: 2px #002e5d solid;
 }
 
 /* Control the right side */
@@ -36,8 +68,11 @@ header {
     right: 0;
     float: right;
 
-    border-left: 2px #eee solid;
     /* background-color: red; */
+}
+
+.border-right {
+    border-left: 1px #0062B8 solid;
 }
 
 /* If you want the content centered horizontally and vertically */
@@ -47,7 +82,7 @@ header {
 
 .verseDisplay {
     box-sizing: border-box;
-    border: 2px black solid;
+    border: 2px #002e5d solid;
     border-radius: 15px;
     padding: 10px;
 }
@@ -59,18 +94,96 @@ header {
     padding-right: 10px;
     padding-left: 10px;
     cursor: pointer;
-    border: 2px solid #ccc;
+    border: 2px solid #002e5d;
     border-radius: 10%;
     display: inline-block;
     margin: 3px;
 }
 .fill {
-    background-color: #ccc;
+    background-color: #002e5d;
+    color: white;
 }
 .otherVerse:hover{
-    background-color: #ccc;
+    background-color: #0062B8;
 }
 
+input {
+    background-color: #002e5d;
+    color: white;
+    cursor: pointer;
+    border-radius: 15%;
+    border: 0px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-right: 9px;
+    padding-left: 9px;
+
+}
+
+input:hover {
+    background-color: #0062B8;
+}
+
+.checkbox {
+    display: block;
+    text-align: center;
+}
+
+
+#promptEnter {
+    height: 60px;
+    width: 90%;
+    box-sizing: border-box;
+    border: 2px #002e5d solid;
+    border-radius: 4px;
+    /* background-color: #f8f8f8; */
+    color: black;
+}
+
+.footer{
+    background-color: #002e5d;
+    position: absolute;
+    display: flex;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;            /* Footer height */
+}
+
+.column{ 
+    width: 30%;
+    margin: auto;
+
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.about_link {
+    color: #0062B8 !important;
+}
+.about_link:hover {
+    color: #002e5d !important;
+}
+
+a:hover {
+    color: #0062B8;
+}
+.about_text{
+    padding: 20px;
+    line-height: 1.5em;
+}
 @media only screen and (max-width: 750px) {
     .split {
         width: 100%;
@@ -78,6 +191,9 @@ header {
         padding-top: 10px;
         padding-right: 10px;
         padding-left: 10px;
+    }
+    .split1{
+        height: 100%;
     }
     .left {
         border-right: 0px;

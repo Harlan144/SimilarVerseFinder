@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
-    <title>Similar Verse Finder</title>
-  </head>
-  <body>
-    <header>
-      <h1>Similar Verse Finder in the Book of Mormon</h1>
-      <p>Made by Harlan Stevens</p>
-    </header>
-    <main>
-      <!-- child template -->
-      {% block content %}
-      {% endblock %}
-    </main>
-  </body>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+  <link rel="stylesheet" href="https://cdn.byu.edu/theme-fonts/1.x.x/ringside/fonts.css" media="all">
+
+  <title>Similar Verse Finder</title>
+</head>
+
+<body>
+  <header>
+    <div class="Header-logo">
+      <a href="https://www.byu.edu/">
+        <img class="PageLogo-image"
+          src="https://brightspotcdn.byu.edu/e4/0a/b679ee0a41d9b1675fc78cd03239/byu-logo-white-small.svg" alt="BYU">
+      </a>
+    </div>
+    <div class="vl"></div>
+    <div class="Header-title">
+      <h1><a href="/">Similar Verse Finder</a></h1>
+    </div>
+  </header>
+  <main class="clearfix">
+    <!-- child template -->
+    {% block content %}
+    {% endblock %}
+  </main>
+  <footer class="footer">
+    <div class="column "><a href="/about">About</a></div>
+    <div class="column border-right"><a href="https://privacy.byu.edu/privacy-notice" target="_blank">Privacy Notice</a></div>
+    <div class="column border-right"><a href="https://infosec.byu.edu/cookie-prefs" target="_blank">Cookie Preference</a></div>
+
+  </footer>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
 </html>

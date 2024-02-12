@@ -3,6 +3,7 @@ import re
 
 df = pd.read_csv('static/standworksDFWebsite')
 
+
 def findVerseInDF(book, chapter, verseNum):
     try:
         index = df.index[(df['Book'] == book) & (df['Chapter'] == int(chapter)) & (df["VerseNum"]== int(verseNum))]

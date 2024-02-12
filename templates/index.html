@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="split left">
+<div class="split left border-left">
+
+
   <div class="centered">
     {% if verse %}
     {% if verse == "Not Found"%}
     <h2>The Book of Mormon verse you inputed is not valid. Please try again.</h2>
+    {% elif verse == "No Works"%}
+    <h2>Please select at least one Standard Works to return similar verses from.</h2>
     {% else %}
     <div class="verseDisplay">
       <h2>{{verse['book'].title()}} {{verse['chapter']}}:{{verse['verseNum']}}</h2>
@@ -19,33 +23,64 @@
       <h2>{{sentence}}</h2>
     </div>
     {% endif %}
-    <div class="split1 left">
+    <div class="checkbox" id="checkbox_div"> 
+      <p>Return results from these standard works:</p>
+      <input type="checkbox" id='oldtestcheckbox' name="oldtestcheckbox" {% if checkInfo[0] %} checked {% endif %} />
+      <label for="oldtestcheckbox">Old Testament</label>
+      <input type="checkbox" id='newtestcheckbox' name="newtestcheckbox" {% if checkInfo[1] %} checked {% endif %}/>
+      <label for="newtestcheckbox">New Testament</label>
+      <input type="checkbox" id='bomcheckbox' name="bomcheckbox" {% if checkInfo[2] %} checked {% endif %} />
+      <label for="bomcheckbox">Book of Mormon</label>
+      <input type="checkbox" id='dccheckbox' name="dccheckbox" {% if checkInfo[3] %} checked {% endif %} />
+      <label for="dccheckbox">D&C</label>
+      <input type="checkbox" id='pogpcheckbox' name="pogpcheckbox" {% if checkInfo[4] %} checked {% endif %} />
+      <label for="pogpcheckbox">Pearl of Great Price</label>
+    </div>
+    
+    <div class="split1 left border-left">
       <h3>Search by Verse</h3>
-      <form method="post" action="/">
-        <p>Enter Book:</p>
-        <p><input type="text" name="book" required /></p>
-        <p>Enter Chapter:</p>
-        <p><input type="number" name="chapter" required /></p>
-        <p>Enter Verse Number:</p>
-        <p><input type="number" name="verseNum" required /></p>
-        <p><input type="submit" value="Submit" /></p>
+      <form method="post" id='form1' action="/">
+        <p>Work:</p>
+        <select id="workDropdown" name="work" onchange="changeBooks()" required>
+          <option value="defaultWork">Select Work...</option>
+          <option value="old testament">Old Testament</option>
+          <option value="new testament">New Testament</option>
+          <option value="book of mormon">Book of Mormon</option>
+          <option value="d&c">D&C</option>
+          <option value="pearl of great price">Pearl of Great Price</option>
+        </select>
+        <p>Book:</p>
+        <select id="bookDropdown" name="book" onchange="changeChapters()" required>
+          <option id="defaultBook" value="defaultBook">Select Book...</option>
+        </select>
+        <p>Chapter/Section:</p>
+        <select id="chapterDropdown" name="chapter" onchange="changeVerses()" required>
+          <option value="defaultChapter">Select Chapter...</option>
+
+        </select>
+        <p>Verse Number:</p>
+        <select id="verseDropdown" name="verse" required>
+          <option value="defaultVerse">Select Verse...</option>
+
+        </select>
+        <p><input type="submit" value="Submit"/></p>
       </form>
     </div>
     <div class="split1 right">
-      <h3>Search by Your Own Sentence</h3>
-      <form method="post" action="/">
-        <p>Enter Your Prompt:</p>
-        <textarea placeholder="The Lord will protect us when we are humble." name="sentence" required></textarea>
+      <h3>Search by Custom Sentence</h3>
+      <form method="post" id='form' action="/">
+        <p>Enter your prompt:</p>
+        <textarea placeholder="The Lord will protect us when we are humble." name="sentence" id="promptEnter" required></textarea>
         <p><input type="submit" value="Submit" /></p>
       </form>
     </div>
-
   </div>
+  
 </div>
 
 <div class="split right">
   <div class="centered">
-    {% if ((verse) and (verse != "Not Found")) or ((sentence) and (sentence != "Not Found"))%}
+    {% if ((verse) and (verse != "Not Found" and verse!="No Works")) or ((sentence) and (sentence != "Not Found"))%}
     {% if foundVerses|length>0 %}
     <div class="verseDisplay">
       <button onclick="plusDivs(-1)">&#10094;</button>
