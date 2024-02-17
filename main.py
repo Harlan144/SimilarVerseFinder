@@ -1,14 +1,12 @@
-from flask import Flask, render_template, request, escape
+from flask import Flask, render_template, request, escape, Blueprint
 from functions import findVerseInDF
 from predictVerse import checkUniqueVerse
 from predictVerse import checkVerse
 
-import sys
-
 app = Flask(__name__)
 
 #Post method sends form to backend, 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/similar_verse_finder/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         print(request.form.to_dict(), flush=True)
@@ -63,9 +61,10 @@ def home():
 
 
 
-@app.route('/about/')
+@app.route('/similar_verse_finder/about/')
 def about():
     return render_template('about.html')
+
 
 if __name__ == "__main__":
     #app.run(debug=True)

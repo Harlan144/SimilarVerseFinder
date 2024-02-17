@@ -111,7 +111,7 @@ function changeVerses() {
   let work = document.getElementById("workDropdown").value;
   let book = document.getElementById("bookDropdown").value;
   let chap = document.getElementById("chapterDropdown").value;
-  fetch('./static/js/dropdown.json')
+  fetch('/static/js/dropdown.json')
     .then(response => response.json())
     .then(data => {
       let verse_select = document.getElementById("verseDropdown");
@@ -140,7 +140,7 @@ function changeVerses() {
 function changeChapters() {
   var work = document.getElementById("workDropdown").value;
   var book = document.getElementById("bookDropdown").value;
-  fetch('./static/js/dropdown.json')
+  fetch('/static/js/dropdown.json')
     .then(response => response.json())
     .then(data => {
       let chapter_select = document.getElementById("chapterDropdown");
@@ -169,7 +169,7 @@ function changeChapters() {
 
 function changeBooks() {
   var work = document.getElementById("workDropdown").value;
-  fetch('./static/js/dropdown.json')
+  fetch('/static/js/dropdown.json')
     .then(response => response.json())
     .then(data => {
       let json_work = data[work];
