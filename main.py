@@ -5,12 +5,11 @@ from predictVerse import checkVerse
 
 app = Flask(__name__)
 
-#Post method sends form to backend, 
-@app.route("/similar_verse_finder/", methods=['GET', 'POST'])
+#Post method sends form to backend,
+@app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        print(request.form.to_dict(), flush=True)
-
+        #print(request.form.to_dict(), flush=True)
         allowed_works = request.form['allowed_works']
 
         checkInfo = [False, False, False, False, False]
@@ -25,7 +24,7 @@ def home():
             checkInfo[3]=True
         if ("pogp" in allowed_works):
             checkInfo[4]=True
-        
+
         if checkInfo == [False, False, False, False, False]:
             return render_template("index.html", verse = "No Works", foundVerses = [], checkInfo = checkInfo)
 
@@ -34,12 +33,11 @@ def home():
 
             if input:
                 listOfOtherVerses = checkUniqueVerse(input, allowed_works)
-                #print(listOfOtherVerses)
+
                 return render_template("index.html", sentence = input, foundVerses = listOfOtherVerses, checkInfo = checkInfo)
             return render_template("index.html", sentence = "Not Found", foundVerses = [], checkInfo=checkInfo)
-            
+
         else:
-            # print('This is standard output', flush=True)
             # print(request.form.to_dict(), flush=True)
 
             # Print the form data to the console
@@ -50,21 +48,17 @@ def home():
             returnedRow = findVerseInDF(book, chapter, verseNum)
 
             if returnedRow!= -1:
-            
                 listOfOtherVerses = checkVerse(book, chapter, verseNum, allowed_works)
-            else: 
+            else:
                 return render_template("index.html", verse = "Not Found", foundVerses = [], checkInfo = checkInfo)
-            
+
             return render_template("index.html", verse =returnedRow, foundVerses = listOfOtherVerses, checkInfo=checkInfo)
     else:
         return render_template("index.html", checkInfo = [True, True, True, True, True])
 
-
-
-@app.route('/similar_verse_finder/about/')
+@app.route('/about')
 def about():
     return render_template('about.html')
-
 
 if __name__ == "__main__":
     #app.run(debug=True)
