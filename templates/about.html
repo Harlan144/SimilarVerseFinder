@@ -3,22 +3,19 @@
 {% block content %}
 <div class="about_text">
     <h2>About Similar Verse Finder</h2>
-    <p >This website was created by the <a href="https://biology.byu.edu/piccolo-lab" class="about_link">Piccolo Lab</a>.
-        Our goal is to facilitate dialogue between religions and help members of The Church of Jesus
-        Christ of Latter-Day Saints and other religions to compare scriptures and find novel similarities for personal
-        religious study.
+    <p>
+        This website was created by the <a href="https://biology.byu.edu/piccolo-lab" class="about_link">Piccolo Lab</a>.
+    </p>
+    <p>
+        Our goal is to facilitate dialogue between religions and to help members of The Church of Jesus
+        Christ of Latter-Day Saints and other religions to compare scriptures and find novel similarities for personal religious study.
         To use this tool, users may select a verse from the Standard Works (Old Testament, New Testament, Book of
-        Mormon, Doctrine and Covenants, or the Pearl of Great Price), and the five most semantically similar verses (as
-        ranked by our machine learning model) will be returned.
-        Alternatively, users may input a prompt/sentence of their choice and the five most similar verses will be
-        returned.
-        This web-based tool relies a machine-learning-based approach to find semantic similarities between scriptural
-        texts using cosine similarities generated with a <a
-            href="https://huggingface.co/sentence-transformers" class="about_link">SentenceTransformers</a>
-        model. More information about the development of this project can be found at <a
-            href="https://github.com/brownthesr/Exegesis-of-Ancient-Texts" class="about_link"> our GitHub</a>. We plan to publish this work
-        in a peer-reviewed journal and use this model to analyze semantic predictions across different scriptural texts to find novel
-        religious insights.
+        Mormon, Doctrine and Covenants, or Pearl of Great Price) or input a prompt/sentence of their choice.
+        The five most semantically similar verses (as ranked by our machine-learning model) will be returned.
+    </p>
+    <p>
+        Our approach relies on <a href="https://en.wikipedia.org/wiki/Language_model" class="about_link">language models</a> to find semantic similarities between texts. More specifically, it uses <a href="https://en.wikipedia.org/wiki/Language_model" class="about_link">transformer</a> models and compares verses using the <a href="https://en.wikipedia.org/wiki/Cosine_similarity" class="about_link">Cosine similarity</a> metric. We rely on the <a href="https://huggingface.co" class="about_link">Hugging Face</a> and <a href="https://www.sbert.net" class="about_link">Sentence Transformers</a> tools to perform these tasks.
+        More information about the development of this project can be found at our <a href="https://github.com/brownthesr/Exegesis-of-Ancient-Texts" class="about_link">GitHub</a> site.
     </p>
 </div>
 
