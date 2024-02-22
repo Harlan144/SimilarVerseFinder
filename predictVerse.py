@@ -45,6 +45,7 @@ def checkUniqueVerse(inputSentance, allowed_works):
     
     count = 0
     top_5 = []
+    
     for verse in reversed(sorted_cosine_scores):
         if count==5:
             break
@@ -60,9 +61,11 @@ def checkUniqueVerse(inputSentance, allowed_works):
         chapter = row["Chapter"]
         verseNum = row["VerseNum"]
         verse = row["Verse"]
-        listOfDic.append({'index': i,'book': book, 'chapter': chapter, 'verseNum': verseNum, 'verse': verse})
+        similarity_score = round(cosine_scores[i]*100,2)
+        listOfDic.append({'index': i,'book': book, 'chapter': chapter, 'verseNum': verseNum, 'verse': verse, 'similarity_score':similarity_score})
 
     return listOfDic
+
 
 def checkVerse(book, chapter, verseNum, allowed_works):    
     model = SentenceTransformer('static/nlpModel')
@@ -108,6 +111,8 @@ def checkVerse(book, chapter, verseNum, allowed_works):
         chapter = row["Chapter"]
         verseNum = row["VerseNum"]
         verse = row["Verse"]
-        listOfDic.append({'index': i,'book': book, 'chapter': chapter, 'verseNum': verseNum, 'verse': verse})
+        similarity_score = round(cosine_scores[i]*100,2)
+
+        listOfDic.append({'index': i,'book': book, 'chapter': chapter, 'verseNum': verseNum, 'verse': verse, 'similarity_score':similarity_score})
 
     return listOfDic

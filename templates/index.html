@@ -97,7 +97,7 @@
       <button onclick="plusDivs(1)">&#10095;</button>
       {% for item in foundVerses%}
       <div class="similarVerse">
-        <h3 class="verseRank">#{{loop.index}}</h3>
+        <h3 class="verseRank">#{{loop.index}} ({{item['similarity_score']}}%)</h3>
         <h2>{{item['book'].title()}} {{item['chapter']}}:{{item['verseNum']}}</h2>
         <p>{{item['verse']}}</p>
       </div>
