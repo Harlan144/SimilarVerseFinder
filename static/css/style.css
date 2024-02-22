@@ -184,6 +184,10 @@ a:hover {
     padding: 20px;
     line-height: 1.5em;
 }
+.verseRank{
+    float: left;
+    margin-top: -40px;
+}
 @media only screen and (max-width: 750px) {
     .split {
         width: 100%;

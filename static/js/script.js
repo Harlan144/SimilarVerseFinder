@@ -1,6 +1,7 @@
 
 document.getElementById("form").addEventListener("submit", function(eventObj) {
   // Create a hidden input element
+
   var hiddenInput = document.createElement("input");
   // Set attributes for the hidden input
   hiddenInput.type = "hidden";
@@ -23,15 +24,25 @@ document.getElementById("form").addEventListener("submit", function(eventObj) {
     values.push("pogp");
   }
   hiddenInput.value = values;
+
   // Append the hidden input to the form
   document.getElementById("form").appendChild(hiddenInput);
+  
   // Continue with the form submission
   return true;
+
 });
 
 
-
 document.getElementById("form1").addEventListener("submit", function(eventObj) {
+  var hiddenInputFormHTML = document.createElement("input");
+  // Set attributes for the hidden input
+  hiddenInputFormHTML.type = "hidden";
+  hiddenInputFormHTML.name = "form1_html";
+  var formHtml = document.getElementById("form1").innerHTML;
+  hiddenInputFormHTML.value = formHtml;
+  document.getElementById("form1").appendChild(hiddenInputFormHTML);
+
   // Create a hidden input element
   var hiddenInput = document.createElement("input");
   // Set attributes for the hidden input
@@ -111,6 +122,7 @@ function changeVerses() {
   let work = document.getElementById("workDropdown").value;
   let book = document.getElementById("bookDropdown").value;
   let chap = document.getElementById("chapterDropdown").value;
+
   fetch('/static/js/dropdown.json')
     .then(response => response.json())
     .then(data => {
@@ -140,6 +152,7 @@ function changeVerses() {
 function changeChapters() {
   var work = document.getElementById("workDropdown").value;
   var book = document.getElementById("bookDropdown").value;
+
   fetch('/static/js/dropdown.json')
     .then(response => response.json())
     .then(data => {
@@ -169,6 +182,7 @@ function changeChapters() {
 
 function changeBooks() {
   var work = document.getElementById("workDropdown").value;
+
   fetch('/static/js/dropdown.json')
     .then(response => response.json())
     .then(data => {

@@ -37,3 +37,18 @@ def findSimilarVerses(work, index):
         #I can add the work and original index if needed
         listOfDic.append({'index': rowNum,'book': book, 'chapter': chapter, 'verseNum': verseNum, 'verse': verse})
     return listOfDic
+
+def modifyHTMLForSubmit(html, work, book, chapter, verse):
+    #change html to find selected elements and add select. 
+    removed_selected = html.replace(' selected=""', '')
+    if "&" in work:
+        work = work.replace("&","&amp;")
+
+    select_work = re.sub(rf'value="{work}">', rf'value="{work}" selected>', removed_selected, count=1, flags=0)
+    select_book = re.sub(rf'value="{book}">', rf'value="{book}" selected>', select_work, count=1, flags=0)
+    select_chap = re.sub(rf'value="{chapter}">(.*?)</select>\r\n        <p>Verse', rf'value="{chapter}" selected>\g<1></select>\r\n        <p>Verse', select_book, count=1, flags=re.DOTALL)
+    select_verse = re.sub(rf'Verse Number:</p>(.*?)value="{verse}">', rf'Verse Number:</p>\g<1>value="{verse}" selected>', select_chap, count=1, flags=re.DOTALL)
+
+
+
+    return select_verse

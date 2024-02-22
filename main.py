@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, escape, Blueprint
-from functions import findVerseInDF
+from functions import findVerseInDF, modifyHTMLForSubmit
 from predictVerse import checkUniqueVerse
 from predictVerse import checkVerse
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        #print(request.form.to_dict(), flush=True)
+        print(request.form.to_dict(), flush=True)
         allowed_works = request.form['allowed_works']
 
         checkInfo = [False, False, False, False, False]
@@ -26,7 +26,7 @@ def home():
             checkInfo[4]=True
 
         if checkInfo == [False, False, False, False, False]:
-            return render_template("index.html", verse = "No Works", foundVerses = [], checkInfo = checkInfo)
+            return render_template("index.html", verse = "No Works", foundVerses = [], checkInfo = checkInfo, form_submit=form1_html)
 
         if 'sentence' in request.form:
             input = request.form['sentence']
@@ -41,18 +41,22 @@ def home():
             # print(request.form.to_dict(), flush=True)
 
             # Print the form data to the console
+            form1_html= request.form['form1_html']
+
             work = request.form['work'].lower()
             book = request.form['book'].lower()
             chapter = request.form['chapter'].lower()
             verseNum = request.form['verse'].lower()
+
+            modified_html = modifyHTMLForSubmit(form1_html, work, book, chapter, verseNum)
             returnedRow = findVerseInDF(book, chapter, verseNum)
 
             if returnedRow!= -1:
                 listOfOtherVerses = checkVerse(book, chapter, verseNum, allowed_works)
             else:
-                return render_template("index.html", verse = "Not Found", foundVerses = [], checkInfo = checkInfo)
+                return render_template("index.html", verse = "Not Found", foundVerses = [], checkInfo = checkInfo, form_submit=modified_html)
 
-            return render_template("index.html", verse =returnedRow, foundVerses = listOfOtherVerses, checkInfo=checkInfo)
+            return render_template("index.html", verse =returnedRow, foundVerses = listOfOtherVerses, checkInfo=checkInfo, form_submit=modified_html)
     else:
         return render_template("index.html", checkInfo = [True, True, True, True, True])
 
