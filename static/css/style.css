@@ -153,8 +153,12 @@ input:hover {
 }
 
 .column{ 
-    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
     margin: auto;
+    height: 100%
 
 }
 
@@ -183,9 +187,10 @@ a:hover {
 .about_text{
     padding: 20px;
     line-height: 1.5em;
+    margin-bottom: 20px;
 }
 .verseRank{
-    float: left;
+    position: absolute;
     margin-top: -40px;
 }
 @media only screen and (max-width: 750px) {
