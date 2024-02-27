@@ -4,7 +4,7 @@
 <div class="split left border-left">
 
 
-  <div class="centered">
+  <div id='top_of_page' class="centered">
     {% if verse %}
     {% if verse == "Not Found"%}
     <h2>The Book of Mormon verse you inputed is not valid. Please try again.</h2>
@@ -15,6 +15,7 @@
       <h2>{{verse['book'].title()}} {{verse['chapter']}}:{{verse['verseNum']}}</h2>
       <p>{{verse['verse']}}</p>
     </div>
+    <i onClick="document.getElementById('returned_verses').scrollIntoView();" class="arrow down"> </i>
     {% endif %}
     {% endif %}
 
@@ -23,11 +24,11 @@
       <h2>{{sentence}}</h2>
     </div>
     {% endif %}
-    <div class="checkbox" id="checkbox_div"> 
+    <div class="checkbox" id="checkbox_div">
       <p>Return results from these standard works:</p>
       <input type="checkbox" id='oldtestcheckbox' name="oldtestcheckbox" {% if checkInfo[0] %} checked {% endif %} />
       <label for="oldtestcheckbox">Old Testament</label>
-      <input type="checkbox" id='newtestcheckbox' name="newtestcheckbox" {% if checkInfo[1] %} checked {% endif %}/>
+      <input type="checkbox" id='newtestcheckbox' name="newtestcheckbox" {% if checkInfo[1] %} checked {% endif %} />
       <label for="newtestcheckbox">New Testament</label>
       <input type="checkbox" id='bomcheckbox' name="bomcheckbox" {% if checkInfo[2] %} checked {% endif %} />
       <label for="bomcheckbox">Book of Mormon</label>
@@ -36,7 +37,7 @@
       <input type="checkbox" id='pogpcheckbox' name="pogpcheckbox" {% if checkInfo[4] %} checked {% endif %} />
       <label for="pogpcheckbox">Pearl of Great Price</label>
     </div>
-    
+
     <div class="split1 left border-left">
       <h3>Search by Verse</h3>
       {% if form_submit %}
@@ -48,7 +49,7 @@
         <p>Work:</p>
         <select id="workDropdown" name="work" onchange="changeBooks()" required>
           <option id='defaultWork' value="">Select Work...</option>
-          <option id= 'oldtestament' value="old testament">Old Testament</option>
+          <option id='oldtestament' value="old testament">Old Testament</option>
           <option id='newtestament' value="new testament">New Testament</option>
           <option id='bookofmormon' value="book of mormon">Book of Mormon</option>
           <option id='d&c' value="d&c">D&C</option>
@@ -68,18 +69,20 @@
           <option value="defaultVerse">Select Verse...</option>
 
         </select>
-        <p><input type="submit" value="Submit"/></p>
+        <p><input type="submit" value="Submit" /></p>
       </form>
-            {% endif %}
+      {% endif %}
     </div>
     <div class="split1 right">
       <h3>Search by Custom Sentence</h3>
       <form method="post" id='form' action="/">
         <p>Enter your prompt:</p>
         {% if sentence %}
-        <textarea placeholder="The Lord will protect us when we are humble." name="sentence" id="promptEnter" required>{{sentence}}</textarea>
+        <textarea placeholder="The Lord will protect us when we are humble." name="sentence" id="promptEnter"
+          required>{{sentence}}</textarea>
         {% else %}
-        <textarea placeholder="The Lord will protect us when we are humble." name="sentence" id="promptEnter" required></textarea>
+        <textarea placeholder="The Lord will protect us when we are humble." name="sentence" id="promptEnter"
+          required></textarea>
         {% endif %}
         <p><input type="submit" value="Submit" /></p>
       </form>
@@ -89,7 +92,7 @@
 </div>
 
 <div class="split right">
-  <div class="centered">
+  <div id='returned_verses' class="centered">
     {% if ((verse) and (verse != "Not Found" and verse!="No Works")) or ((sentence) and (sentence != "Not Found"))%}
     {% if foundVerses|length>0 %}
     <div class="verseDisplay">
@@ -111,6 +114,8 @@
       </div>
       {% endfor %}
     </div>
+  
+    <i onClick="document.getElementById('top_of_page').scrollIntoView();" class="arrow up"></i>
 
     {% else %}
     <h2>For some reason, our developer failed. Sorry!</h2>
