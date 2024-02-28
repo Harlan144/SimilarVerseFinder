@@ -193,6 +193,13 @@ a:hover {
     position: absolute;
     margin-top: -40px;
 }
+.similarityRank{
+    position: absolute;
+    margin-top: -40px;
+    right: 0;
+    margin-right: 60px;
+}
+
 .arrow{
     display: none;
 }
@@ -238,5 +245,8 @@ a:hover {
         border: solid #0062B8;
         border-width: 0 4px 4px 0;
 
+    }
+    .similarityRank{
+        margin-right: 25px;
     }
 }

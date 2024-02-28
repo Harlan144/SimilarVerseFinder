@@ -61,7 +61,7 @@ def checkUniqueVerse(inputSentance, allowed_works):
         chapter = row["Chapter"]
         verseNum = row["VerseNum"]
         verse = row["Verse"]
-        similarity_score = round(cosine_scores[i]*100,2)
+        similarity_score = round(cosine_scores[i],3)
         listOfDic.append({'index': i,'book': book, 'chapter': chapter, 'verseNum': verseNum, 'verse': verse, 'similarity_score':similarity_score})
 
     return listOfDic
@@ -111,7 +111,7 @@ def checkVerse(book, chapter, verseNum, allowed_works):
         chapter = row["Chapter"]
         verseNum = row["VerseNum"]
         verse = row["Verse"]
-        similarity_score = round(cosine_scores[i]*100,2)
+        similarity_score = round(cosine_scores[i],3)
 
         listOfDic.append({'index': i,'book': book, 'chapter': chapter, 'verseNum': verseNum, 'verse': verse, 'similarity_score':similarity_score})
 
